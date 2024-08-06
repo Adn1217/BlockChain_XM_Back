@@ -1,0 +1,1 @@
+export { GenerateTransferDto } from "./generate-transfer.dto"

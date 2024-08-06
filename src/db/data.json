@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": "1c320068-82ef-4e1a-bf63-830321073809",
+      "email": "Jannie14@gmail.com",
+      "privateKey": "0x4f62d8bc71ab0e30cf618d134a2ace9e10e6b364455711c688fdd70603a3eae4",
+      "publicKey": "0x58455FedcD2941c1c0eb66373dD2D841f20B6788"
+    },
+    {
+      "id": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
+      "email": "Zella64@yahoo.com",
+      "publicKey": "0x5E5739cC62175F6a34b1f2f77992172a574aF09f",
+      "privateKey": "0x3ba3029a9b1a5cef90b9c92dc680d004ac12a2107fbafc5abff3f13ca6d4ac78"
+    },
+    {
+      "id": "a237de21-a05e-4959-9e46-8d359c4290c6",
+      "email": "Mac67@hotmail.com",
+      "publicKey": "0xa812703620a55Ade6604f3ED4a11B43e6b053b69",
+      "privateKey": "0x1f84ae8587a8252f0c29c4e70f5a2f0d84f7e350b2eb3e3fecc3ba2bd6314db7"
+    }
+  ],
+  "offers": [
+    {
+      "id": "1",
+      "agent": "EEPPMM",
+      "energy": 20,
+      "price": 5000,
+      "hourFrom": 1721763000,
+      "hourTo": 1721772000,
+      "priceNormal": 6000,
+      "typeGenerator": "Water",
+      "status": "INPROGRESS"
+    }
+  ],
+  "purchase": [
+    {
+      "id": "1",
+      "userId": 1,
+      "offerId": 1,
+      "energy": 20,
+      "price": 5000,
+      "typeGenerator": "Water",
+      "cashback": 500,
+      "status": "PENDING",
+      "signature": "0xbb29f1159e4312b226691478f55a1ace588918544ccf501a55bf7a3b28dc021830ea4a5aab51c2538626ddf7225208aac638c218b0116dbe96c677cd558ec22e1b",
+      "createdAt": 1722350193,
+      "updatedAt": 1722350193
+    }
+  ]
+}
