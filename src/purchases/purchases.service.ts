@@ -31,6 +31,8 @@ export class PurchasesService {
         const purchase = {
           ...myFreeOffer, 
           id : "" + ((await this.findAll()).length + 1),
+          idOffer: myFreeOffer.id,
+          userId: user.id,
           cashback: myFreeOffer.price * 0.1,
           status: status.pending,
           signature: sign.signature,
