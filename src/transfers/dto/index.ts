@@ -1,1 +1,1 @@
-export { GenerateTransferDto } from "./generate-transfer.dto"
+export { GenerateTransferDto } from "./generateTransfer.dto"
