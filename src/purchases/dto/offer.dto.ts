@@ -1,28 +1,15 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreatePurchaseDto } from './createPurchase.dto';
+import { status, typeGenerator } from './Purchase.dto';
 import { IsEnum, IsInt, IsNumber, IsPositive, IsString } from 'class-validator';
 
-export enum typeGenerator {
-    eolic = 'eolic',
-    hydro = 'hydro',
-    solar = 'solar',
-    thermal = 'thermal',
-  }
-
-export enum status {
-    free = 'free',
-    inProgress = 'inProgress',
-    pending = 'pending',
-    done = 'done'
-  }
-export class PurchaseDto extends CreatePurchaseDto {
+export class OfferDto {
     
-    @IsString({message: 'Atributos deben contener "id"'})
+    @IsString({message: 'Atributos deben contener "Id"'})
     public readonly id: string;
-
-    @IsString({message: 'Atributos deben contener "id"'})
-    public readonly userId: string;
     
+    @IsString({message: 'Atributos deben contener "agent"'})
+    public readonly agent: string;
+
     @IsInt({message: 'La energía debe ser un entero.'})
     @IsNumber()
     public readonly energy: number;
@@ -30,6 +17,18 @@ export class PurchaseDto extends CreatePurchaseDto {
     @IsNumber()
     @IsPositive({message: 'El precio debe ser un número positivo'})
     public readonly price: number;
+    
+    @IsNumber()
+    @IsPositive({message: 'Atributos deben contener "hourFrom"'})
+    public readonly hourFrom: number;
+    
+    @IsNumber()
+    @IsPositive({message: 'Atributos deben contener "hourFrom"'})
+    public readonly hourTo: number;
+    
+    @IsNumber()
+    @IsPositive({message: 'El precio normal debe ser un número positivo'})
+    public readonly priceNormal: number;
     
     @IsString({message: 'Atributos deben contener "typeGenerator"'})
     @IsEnum(typeGenerator)
@@ -54,12 +53,14 @@ export class PurchaseDto extends CreatePurchaseDto {
     @IsPositive({message: 'Atributos deben contener "updatedAt"'})
     public readonly updatedAt: number;
 
-    constructor(offerId: string, id: string, userId: string, energy: number, price: number, hourFrom: number, hourTo: number, priceNormal: number, cashback: number, typeGenerator: typeGenerator, status: status, signature: string, createdAt: number, updatedAt: number){
-        super(offerId),
+    constructor(id: string, agent: string, energy: number, price: number, hourFrom: number, hourTo: number, priceNormal: number, cashback: number, typeGenerator: typeGenerator, status: status, signature: string, createdAt: number, updatedAt: number){
         this.id = id;
-        this.userId = userId;        
+        this.agent = agent;
         this.energy = energy;
         this.price = price;
+        this.hourFrom = hourFrom;
+        this.hourTo = hourTo;
+        this.priceNormal = priceNormal;
         this.typeGenerator = typeGenerator;
         this.status = status;
         this.cashback = cashback;
@@ -69,12 +70,14 @@ export class PurchaseDto extends CreatePurchaseDto {
     }
     
     public getAttributes(){
-        const purchaseDto = {
+        const offerDto = {
             'id': this.id,
-            'offerId': this.offerId,
-            'userId': this.userId,
+            'agent': this.agent,
             'energy': this.energy,
             'price': this.price,
+            'hourFrom': this.hourFrom,
+            'hourTo': this.hourTo,
+            'priceNormal': this.priceNormal,
             'typeGenerator': this.typeGenerator,
             'status': this.status,
             'cashback': this.cashback,
@@ -82,6 +85,6 @@ export class PurchaseDto extends CreatePurchaseDto {
             'createdAt': this.createdAt,
             'updatedAt': this.updatedAt
         }
-         return purchaseDto;
+         return offerDto;
     }
 }
