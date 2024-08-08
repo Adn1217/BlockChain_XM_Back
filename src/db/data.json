@@ -29,7 +29,7 @@
 			"hourTo": 1721783000,
 			"priceNormal": 7000,
 			"typeGenerator": "Eolic",
-			"status": "inProgress"
+			"status": "free"
 		},
 		{
 			"id": "2",
@@ -52,6 +52,17 @@
 			"priceNormal": 7000,
 			"typeGenerator": "Eolic",
 			"status": "pending"
+		},
+		{
+			"id": "4",
+			"agent": "URRÁ",
+			"energy": 10,
+			"price": 1000,
+			"hourFrom": 1721778000,
+			"hourTo": 1721783000,
+			"priceNormal": 2000,
+			"typeGenerator": "Hydro",
+			"status": "pending"
 		}
 	],
 	"purchase": [
@@ -62,6 +73,8 @@
 			"priceNormal": 6000,
 			"typeGenerator": "Water",
 			"status": "pending",
+			"idOffer": "1",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
 			"cashback": 500,
 			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
 			"createdAt": 1723064096,
@@ -74,6 +87,8 @@
 			"priceNormal": 6000,
 			"typeGenerator": "Water",
 			"status": "pending",
+			"idOffer": "3",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
 			"cashback": 500,
 			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
 			"createdAt": 1723064105,
@@ -134,6 +149,62 @@
 			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
 			"createdAt": 1723078748,
 			"updatedAt": 1723078748
+		},
+		{
+			"id": "7",
+			"energy": 10,
+			"price": 1000,
+			"priceNormal": 2000,
+			"typeGenerator": "Hydro",
+			"status": "pending",
+			"idOffer": "4",
+			"userId": "1c320068-82ef-4e1a-bf63-830321073809",
+			"cashback": 100,
+			"signature": "0xe90f9935c0c94f7e327502f48b935391f60e8f8264318f9b002b4896d27a1a5f1c6e6e8c4119a538e6a38c2175f3435a13a57ecf2779d2af03f8588d706f26481b",
+			"createdAt": 1723081112,
+			"updatedAt": 1723081112
+		},
+		{
+			"id": "8",
+			"energy": 40,
+			"price": 4000,
+			"priceNormal": 7000,
+			"typeGenerator": "Eolic",
+			"status": "pending",
+			"idOffer": "3",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
+			"cashback": 400,
+			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
+			"createdAt": 1723082854,
+			"updatedAt": 1723082854
+		},
+		{
+			"id": "9",
+			"energy": 10,
+			"price": 1000,
+			"priceNormal": 2000,
+			"typeGenerator": "Hydro",
+			"status": "pending",
+			"idOffer": "4",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
+			"cashback": 100,
+			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
+			"createdAt": 1723084958,
+			"updatedAt": 1723084958
+		},
+		{
+			"id": "10",
+			"energy": 30,
+			"price": 3000,
+			"priceNormal": 5000,
+			"typeGenerator": "Solar",
+			"status": "pending",
+			"idOffer": "2",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
+			"cashback": 300,
+			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
+			"createdAt": 1723085283,
+			"updatedAt": 1723085283
 		}
 	]
 }

@@ -6,6 +6,8 @@ import { EnvConfig } from 'src/config/env.config';
 import { Web3 }  from 'web3';
 import { status } from './dto/Purchase.dto';
 import { web3Variables } from 'src/common/constants';
+import { lastPurchaseDto } from './model/purchases.interface';
+import { isNumber } from 'class-validator';
 
 const decimals = 1000000000000000000;
 @Injectable()
@@ -32,7 +34,7 @@ export class PurchasesService {
         const sign = web3.eth.accounts.sign(message, privateKey);
         const purchase = {
           ...myFreeOffer, 
-          id : "" + ((await this.findAll()).length + 1),
+          id : String((await this.findAll()).length + 1),
           idOffer: myFreeOffer.id,
           userId: user.id,
           cashback: myFreeOffer.price * 0.1,
@@ -67,6 +69,21 @@ export class PurchasesService {
     const data = await fs.readFile("./src/db/data.json","utf8");
     const purchases = JSON.parse(data).purchase;
     return purchases;
+  }
+  
+  async findAllByEmail(email: string): Promise<PurchaseDto[]> {
+
+    const user = await this.usersService.getUserByEmail(email);
+    if(!user){
+      throw new HttpException({
+        status: HttpStatus.NOT_FOUND,
+        error: `Usuario no encontrado`,
+      }, HttpStatus.NOT_FOUND)
+    }else{
+      const purchases = await this.findAll();
+      const purchasesByEmail = purchases.filter((purchase) => purchase.userId === user.id);
+      return purchasesByEmail;
+    }
   }
   
   async findOne(id: string): Promise<PurchaseDto> {
@@ -124,18 +141,21 @@ export class PurchasesService {
           .send({ from: userPublicKey }) // Se requiere para interactuar con una función de escritura. Determina quién paga el gas. En este caso el usuario que está comprando.
           // console.log('Aprobación: ', approve);
           //El contrato inteligente hace uso del monto aprobado por el usuario y se deposita a sí mismo el dinero de la compra.
-          const XMMainContract = new web3.eth.Contract(
-            web3Variables.ABIMain,
-            web3Variables.Main
-          );
+          
           if(approve.gasUsed){
+            const purchaseId = String((await this.findAll()).length + 1);
+            const XMMainContract = new web3.eth.Contract(
+              web3Variables.ABIMain,
+              web3Variables.Main
+            );
             const deposit =await XMMainContract.methods
-            .deposit(userPublicKey, amount, createPurchaseDto.offerId, createPurchaseDto.signature)
+            .deposit(userPublicKey, amount, purchaseId, createPurchaseDto.signature)
             .send({from: userPublicKey}) // Dirección del usuario.
             // .send({from: web3Variables.Main}) // Dirección del contrato inteligente.
             const createPurchaseDtoWeb2 = new CreatePurchaseDto(""+createPurchaseDto.offerId)
             let purchaseDone = await this.create(email, createPurchaseDtoWeb2)
             let ack = {...purchaseDone,
+              purchaseId: purchaseId,
               approve: approve?.transactionHash,
               deposit: deposit?.transactionHash
             }
@@ -156,5 +176,51 @@ export class PurchasesService {
     }
   }
 
+  // Encuentra la última compra hecha por el usuario.
+  async findLastByEmail(email: string): Promise<PurchaseDto> {
 
+    const user = await this.usersService.getUserByEmail(email);
+    if(!user){
+      throw new HttpException({
+        status: HttpStatus.NOT_FOUND,
+        error: `Usuario no encontrado`,
+      }, HttpStatus.NOT_FOUND)
+    }else{
+      const purchases = await this.findAll();
+      const purchasesByEmail = purchases.filter((purchase) => purchase.userId === user.id);
+      const sortedPurchases = purchasesByEmail.sort((a,b) => b.createdAt - a.createdAt) // De más reciente a más antiguo.
+      const lastPurchase = sortedPurchases[0]; // última compra hecha.
+      return lastPurchase;
+      }
+    }
+
+  async findAllByEmailWeb3(email: string): Promise<lastPurchaseDto> {
+
+    const lastPurchase = await this.findLastByEmail(email);
+    let lastAmount = {
+      user: email,
+      amount: 0
+    }
+    if (lastPurchase){
+      const chainRPCUrl = EnvConfig().chainRPC
+      const web3 = new Web3(chainRPCUrl);
+      const XMMainContract = new web3.eth.Contract(
+        web3Variables.ABIMain,
+        web3Variables.Main
+      );
+      const transfer =await XMMainContract.methods
+      .transfers(lastPurchase.id)
+      .call() // Usado para transacción de lectura.
+      if(isNumber(Number(transfer))){
+        lastAmount.amount = Number(transfer)/decimals;
+      }else{
+        console.log('Transacción: ',transfer)
+      }
+    }else{
+      lastAmount.amount = 0
+    }
+    return lastAmount;
+  }
 }
+
+
