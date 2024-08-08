@@ -1,6 +1,6 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
 import { UserService } from './users.service';
-import { CreateUserDto } from './dtos'
+import { CreateUserDto, UserDto } from './dtos'
 
 @Controller('users')
 export class UserController {
@@ -9,6 +9,11 @@ export class UserController {
   @Get()
   async getUsers(): Promise<CreateUserDto[]>{
     return await this.appService.getUsers();
+  }
+  
+  @Get(':email')
+  async getUserByEmail(@Param('email') email: string): Promise<UserDto | undefined>{
+    return await this.appService.getUserByEmail(email);
   }
 
   @Post()

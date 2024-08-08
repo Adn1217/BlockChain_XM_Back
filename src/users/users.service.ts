@@ -18,6 +18,13 @@ export class UserService {
     const users = JSON.parse(data).users;
     return users;
   }
+  
+  async getUserByEmail(email: string): Promise<UserDto | undefined>{
+    const data = await fs.readFile('./src/db/data.json', 'utf8');
+    const users = JSON.parse(data).users;
+    const user = users.find((user) => user.email == email);
+    return user;
+  }
 
   createUser(createUserDto: CreateUserDto): UserDto{
     let newUser = {...createUserDto, id: randomUUID()}
