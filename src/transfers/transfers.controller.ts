@@ -3,7 +3,7 @@ import { TransfersService } from './transfers.service';
 import { GenerateTransferDto } from './dto/generateTransfer.dto';
 
 
-type standards = 'ERC20' | 'ERC721'
+type standards = 'NATIVA'|'ERC20'
 
 @Controller('transfers')
 export class TransfersController {
@@ -17,10 +17,15 @@ export class TransfersController {
         error: `No hay información de la tranferencia`,
       }, HttpStatus.BAD_REQUEST)
     }
-    if(std = 'ERC721'){
+    if(std = 'NATIVA'){
       return this.transfersService.generate(generateTransferDto);
     } else if (std = 'ERC20'){
       return this.transfersService.generateERC20(generateTransferDto);
+    }else {
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: `Tipo de transferencia no soportada.`,
+      }, HttpStatus.BAD_REQUEST)
     }
   }
   

@@ -15,6 +15,11 @@ export enum status {
     pending = 'pending',
     done = 'done'
   }
+
+export enum purchaseType {
+    web2= 'web2',
+    web3= 'web3'
+}
 export class PurchaseDto extends CreatePurchaseDto {
     
     @IsString({message: 'Atributos deben contener "id"'})

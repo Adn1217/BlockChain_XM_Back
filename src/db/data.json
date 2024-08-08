@@ -21,14 +21,14 @@
 	],
 	"offers": [
 		{
-			"id": "2",
-			"agent": "EEPPMM",
-			"energy": 30,
-			"price": 3000,
-			"hourFrom": 1721768000,
-			"hourTo": 1721782000,
-			"priceNormal": 5000,
-			"typeGenerator": "Solar",
+			"id": "1",
+			"agent": "CELSIA",
+			"energy": 40,
+			"price": 4000,
+			"hourFrom": 1721769000,
+			"hourTo": 1721783000,
+			"priceNormal": 7000,
+			"typeGenerator": "Eolic",
 			"status": "inProgress"
 		},
 		{
@@ -40,7 +40,7 @@
 			"hourTo": 1721782000,
 			"priceNormal": 5000,
 			"typeGenerator": "Solar",
-			"status": "free"
+			"status": "pending"
 		},
 		{
 			"id": "3",
@@ -51,7 +51,7 @@
 			"hourTo": 1721783000,
 			"priceNormal": 7000,
 			"typeGenerator": "Eolic",
-			"status": "free"
+			"status": "pending"
 		}
 	],
 	"purchase": [
@@ -92,6 +92,48 @@
 			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
 			"createdAt": 1723064324,
 			"updatedAt": 1723064324
+		},
+		{
+			"id": "4",
+			"energy": 40,
+			"price": 4000,
+			"priceNormal": 7000,
+			"typeGenerator": "Eolic",
+			"status": "pending",
+			"idOffer": "3",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
+			"cashback": 400,
+			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
+			"createdAt": 1723068858,
+			"updatedAt": 1723068858
+		},
+		{
+			"id": "5",
+			"energy": 30,
+			"price": 3000,
+			"priceNormal": 5000,
+			"typeGenerator": "Solar",
+			"status": "pending",
+			"idOffer": "2",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
+			"cashback": 300,
+			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
+			"createdAt": 1723075929,
+			"updatedAt": 1723075929
+		},
+		{
+			"id": "6",
+			"energy": 40,
+			"price": 4000,
+			"priceNormal": 7000,
+			"typeGenerator": "Eolic",
+			"status": "pending",
+			"idOffer": "3",
+			"userId": "1a1b2e68-a579-45e5-9559-5be588ff4c97",
+			"cashback": 400,
+			"signature": "0x5be96e14565bbdbef2d1af169df2e0a2844ae6b970085ea58c4164d4a5afff5c5bbc457807692798af146a73e164d9d8e15eb59ecd992c9b8cb5b828c522339e1b",
+			"createdAt": 1723078748,
+			"updatedAt": 1723078748
 		}
 	]
 }

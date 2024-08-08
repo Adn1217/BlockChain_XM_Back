@@ -5,13 +5,13 @@ import { EnvConfig } from 'src/config/env.config';
 import { web3Variables} from 'src/common/constants';
 
 
+const decimals = 1000000000000000000;
 @Injectable()
 export class TransfersService {
   async generate(generateTransferDto: GenerateTransferDto) {
 
     const chainRPCUrl = EnvConfig().chainRPC
     const web3 = new Web3(chainRPCUrl);
-    const decimals = 10000000000000000000;
     const account = web3.eth.accounts.wallet.add(EnvConfig().privateKey)
     const amount = generateTransferDto.amount;
     const to = generateTransferDto.receiver;
@@ -33,7 +33,6 @@ export class TransfersService {
 
     const chainRPCUrl = EnvConfig().chainRPC
     const web3 = new Web3(chainRPCUrl);
-    const decimals = 10000000000000000000;
     const account = web3.eth.accounts.wallet.add(EnvConfig().privateKey)
     const amount = generateTransferDto.amount;
     const to = generateTransferDto.receiver;
