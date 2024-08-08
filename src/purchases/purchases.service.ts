@@ -164,7 +164,7 @@ export class PurchasesService {
             return {message: 'Aprobación del monto no realizada.'}
           }
         }catch(err){
-          console.log(err)
+          console.log(err);
           console.log('Se presenta error: ', err.message);
         }
       }else{
