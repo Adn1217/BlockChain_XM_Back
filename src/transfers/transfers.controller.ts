@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { TransfersService } from './transfers.service';
-import { GenerateTransferDto } from './dto/generateTransfer.dto';
+import { GenerateTransferDto } from './dto/';
 
 
 type standards = 'NATIVA'|'ERC20'

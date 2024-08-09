@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Headers, HttpException, HttpStatus, Query } from '@nestjs/common';
 import { PurchasesService } from './purchases.service';
-import { PurchaseDto, purchaseType } from './dto/purchase.dto';
+import { purchaseType } from './dto/purchase.dto';
 import { CreatePurchaseDto, CreatePurchaseDtoWeb3 } from './dto';
 import { purchasesQueryParams } from './model/purchases.interface';
 
