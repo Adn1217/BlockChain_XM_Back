@@ -210,6 +210,23 @@ Payload (Body):
 
 **Note**: The offerId has to exist with status "free" on the BD.
 
+### WITHDRAWALS
+
+generateWithdraw:
+
+Transfer money from contract to a receiver. It has to be executed by an account autorized to withdraw from contract (withdrawOnlyOwner = XMCOP_OWNER).
+
+```
+http://localhost:{PORT}/withdrawals
+```
+
+Payload (Body):
+
+{
+"receiver": "0xC12AA...670d7dB5",
+"amount": 0.1
+}
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
