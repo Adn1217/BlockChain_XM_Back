@@ -17,18 +17,18 @@ export class UserController {
   }
 
   @Post()
-  createUser(@Body() createUserDto: CreateUserDto): CreateUserDto {
+  async createUser(@Body() createUserDto: CreateUserDto): Promise<CreateUserDto> {
     if (Object.keys(createUserDto).length === 0){
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,
         error: `No hay información del usuario`,
       }, HttpStatus.BAD_REQUEST)
     }
-    return this.appService.createUser(createUserDto);
+    return await this.appService.createUser(createUserDto);
   }
 
   @Post('random')
-  createRandomUser(): CreateUserDto {
+  createRandomUser(): Promise<CreateUserDto> {
     return this.appService.createRandomUser();
   }
 

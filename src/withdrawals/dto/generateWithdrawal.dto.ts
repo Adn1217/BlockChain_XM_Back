@@ -1,6 +1,6 @@
-import { IsInt, IsPositive, IsString} from "class-validator";
+import { IsPositive, IsString} from "class-validator";
 
-export class GenerateTransferDto {
+export class GenerateWithdrawalDto {
 
     //@IsInt({message: 'La cantidad debe ser un entero.'})
     @IsPositive({message: 'La cantidad debe ser positiva.'})
@@ -16,11 +16,12 @@ export class GenerateTransferDto {
     }
 
     public getAttributes(){
-        const generateTransferDto = {
+        const generateWithdrawalDto = {
             'amount': this.amount,
             'receiver': this.receiver,
         }
-         return generateTransferDto;
+         return generateWithdrawalDto;
     }
 
 }
+
