@@ -56,6 +56,160 @@ npm install -g @nestjs/cli
 npm run start:dev
 ```
 
+## Endpoints
+
+### USERS
+
+GetUsers:
+
+**GET**
+
+```
+http://localhost:{PORT}/users/
+```
+
+CreateUser:
+
+**POST**
+
+```
+http://localhost:{PORT}/users/
+```
+
+Payload (Body):
+
+```
+{
+"email": "axy1311@hotmail.com",
+"privateKey":"C12asas..johas",
+"publicKey": "4Fasaksjas..as"
+}
+```
+
+CreateUserRandom:
+
+**POST**
+
+```
+http://localhost:{PORT}/users/random
+```
+
+### TRANSFERS
+
+GenerateTransfer:
+
+**POST**
+
+```
+http://localhost:{PORT}/transfers/Nativa
+```
+
+Payload (Body):
+
+```
+{
+    "receiver": "0xC12AA...670d7dB5",
+    "amount": 0.1
+}
+```
+
+GenerateTransferERC20:
+
+**POST**
+
+```
+http://localhost:{PORT}/transfers/ERC20
+```
+
+Payload (Body):
+
+```
+{
+    "receiver": "0x58455...f20B6788",
+    "amount": 0.1
+}
+```
+
+### PURCHASES
+
+GetPurchaseByEmailWeb2:
+
+Return list of all purchases done by one user email.
+
+**GET**
+(With Query Params)
+
+```
+http://localhost:{PORT}/purchases/web2/?email={email}
+```
+
+GetPurchaseByEmailWeb3:
+
+Return the amount of the last transaction done by that user on the blockchain contract.
+
+**GET**
+(With Query Params)
+
+```
+http://localhost:{PORT}/purchases/web3/?email={email}}
+```
+
+CreatePurchaseWeb2:
+
+Create a purchase directly in the BD without using web3.
+
+**POST**
+
+```
+http://localhost:{PORT}/purchases/web2
+```
+
+Headers:
+
+```
+Authorization: bearer {email}
+```
+
+**Note:** email has to exist in the BD.
+
+Payload (Body):
+
+```
+{
+    "offerId": 4
+}
+```
+
+**Note:** The offerId has to exist with status "free" in the BD.
+
+CreatePurchaseWeb3:
+
+Create a purchase using web3 and then it is saved in the web2 BD.
+
+**POST**
+
+```
+http://localhost:{PORT}/purchases/web3
+```
+
+Headers:
+
+```
+Authorization: bearer {email}
+```
+
+**Note:** email has to exist in the BD.
+
+Payload (Body):
+
+```
+{
+    "offerId": 4
+}
+```
+
+**Note**: The offerId has to exist with status "free" on the BD.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
